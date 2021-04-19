@@ -4,6 +4,7 @@ const app = require('express')();
 const PORT = 8085;
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
+const cors = require('cors');
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -14,7 +15,7 @@ const pool = new Pool({
 
 // app.use(bodyParser.json());
 app.use(bodyParser.json())
-
+app.use(cors());
 // app.use()
 
 app.listen(PORT, () => console.log('listening on ' + PORT));
