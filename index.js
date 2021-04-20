@@ -11,6 +11,9 @@ const saltRounds = 10;
 
 const pool = new Pool({
   connectionString: process.env.DB_CONNECTION_STRING,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 
 // app.use(bodyParser.json());
@@ -45,7 +48,7 @@ app.post('/api/videos/', async (req, res) => {
     const qs = `
     SELECT * from videos WHERE
     user_id = $1;`;
-    
+
     const data = await pool
       .query(qs, [req.body.id]);
 
